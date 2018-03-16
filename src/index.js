@@ -1,7 +1,16 @@
 /* @flow */
 
-const hello = (term: string) => {
-  return term
+import React, { PureComponent } from 'react'
+import { Text, View } from 'react-native'
+
+class FloatingLabelTextInput extends PureComponent<{}> {
+  render() {
+    return (
+      <View>
+        <Text>{`FloatingLabelTextInput`}</Text>
+      </View>
+    )
+  }
 }
 
-export default hello
+export default FloatingLabelTextInput
