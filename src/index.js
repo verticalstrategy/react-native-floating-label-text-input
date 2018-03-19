@@ -1,16 +1,154 @@
 /* @flow */
 
 import React, { PureComponent } from 'react'
-import { Text, View } from 'react-native'
+import {
+  Animated,
+  Text,
+  TextInput,
+  View,
+  ViewPropTypes,
+  StyleSheet,
+} from 'react-native'
 
-class FloatingLabelTextInput extends PureComponent<{}> {
+type LayoutEvent = {
+  nativeEvent: {
+    layout: {
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+    },
+  },
+}
+
+type Props = {
+  containerStyle?: ViewPropTypes.style,
+  label?: string,
+  labelStyle?: ViewPropTypes.style,
+  placeholder: string,
+  style?: ViewPropTypes.style,
+  value: ?string,
+}
+
+type State = {
+  labelHeight: number,
+  labelMarginTop: Animated.Value,
+  textInputContainerPaddingTop: Animated.Value,
+}
+
+class FloatingLabelTextInput extends PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      labelHeight: 0,
+      labelMarginTop: new Animated.Value(0),
+      textInputContainerPaddingTop: new Animated.Value(0),
+    }
+  }
+
+  componentWillReceiveProps = (nextProps: Props) => {
+    if (!this.props.value && nextProps.value) {
+      this.animateTextInputContainerDown()
+    }
+
+    if (this.props.value && !nextProps.value) {
+      this.animateTextInputContainerUp()
+    }
+  }
+
+  onLabelContainerLayout = (e: LayoutEvent) => {
+    const height = e.nativeEvent.layout.height
+
+    if (this.state.labelHeight !== height) {
+      this.setState({
+        labelHeight: height,
+        labelMarginTop: new Animated.Value(this.props.value ? 0 : height),
+        textInputContainerPaddingTop: new Animated.Value(
+          this.props.value ? height : 0
+        ),
+      })
+    }
+  }
+
+  animateTextInputContainerDown = () => {
+    Animated.timing(this.state.textInputContainerPaddingTop, {
+      toValue: this.state.labelHeight,
+      duration: 250,
+    }).start()
+
+    Animated.timing(this.state.labelMarginTop, {
+      toValue: 0,
+      duration: 250,
+    }).start()
+  }
+
+  animateTextInputContainerUp = () => {
+    Animated.timing(this.state.textInputContainerPaddingTop, {
+      toValue: 0,
+      duration: 250,
+    }).start()
+
+    Animated.timing(this.state.labelMarginTop, {
+      toValue: this.state.labelHeight,
+      duration: 250,
+    }).start()
+  }
+
   render() {
+    const labelContainerOpacity = this.state.labelMarginTop.interpolate({
+      inputRange: [0, this.state.labelHeight],
+      outputRange: [1, 0],
+    })
+
     return (
-      <View>
-        <Text>{`FloatingLabelTextInput`}</Text>
+      <View style={this.props.containerStyle}>
+        <View style={styles.wrapper}>
+          <Animated.Text
+            onLayout={this.onLabelContainerLayout}
+            style={[
+              styles.labelContainer,
+              this.props.labelStyle,
+              {
+                marginTop: this.state.labelMarginTop,
+                opacity: labelContainerOpacity,
+              },
+            ]}>
+            {this.props.label || this.props.placeholder}
+          </Animated.Text>
+          <Animated.View
+            style={[
+              styles.textInputContainer,
+              { paddingTop: this.state.textInputContainerPaddingTop },
+            ]}>
+            <TextInput
+              {...this.props}
+              style={[this.props.style, styles.input]}
+            />
+          </Animated.View>
+        </View>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+
+  labelContainer: {
+    position: 'absolute',
+    top: 0,
+  },
+
+  textInputContainer: {
+    flex: 1,
+  },
+
+  input: {
+    flex: 1,
+  },
+})
 
 export default FloatingLabelTextInput
