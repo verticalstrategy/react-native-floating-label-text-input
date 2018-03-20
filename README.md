@@ -8,10 +8,6 @@ yarn add @rise-digital/react-native-floating-label-text-input
 ```
 
 ## Usage
-<p align='center'>
-  <img src="https://i.imgur.com/JyrTylB.gif" />
-</p>
-
 ```
 import FloatingLabelTextInput from 'react-native-floating-label-text-input'
 
@@ -29,7 +25,7 @@ Besides [TextInput Props](https://facebook.github.io/react-native/docs/textinput
 
 
 
-| Param                | type     | Description |
+| Param                | Type     | Description |
 |----------------------|----------|-------------|
 | `containerStyle`     | `any`    | Styles for the container wrapping the internal `TextInput` and label.
 | `label`              | `string` | If provided, this will be displayed in the label instead of the placeholder text.
