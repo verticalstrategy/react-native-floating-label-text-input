@@ -10,6 +10,8 @@ import {
   StyleSheet,
 } from 'react-native'
 
+const ANIMATION_DURATION = 250
+
 type LayoutEvent = {
   nativeEvent: {
     layout: {
@@ -74,24 +76,24 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
   animateTextInputContainerDown = () => {
     Animated.timing(this.state.textInputContainerPaddingTop, {
       toValue: this.state.labelHeight,
-      duration: 250,
+      duration: ANIMATION_DURATION,
     }).start()
 
     Animated.timing(this.state.labelMarginTop, {
       toValue: 0,
-      duration: 250,
+      duration: ANIMATION_DURATION,
     }).start()
   }
 
   animateTextInputContainerUp = () => {
     Animated.timing(this.state.textInputContainerPaddingTop, {
       toValue: 0,
-      duration: 250,
+      duration: ANIMATION_DURATION,
     }).start()
 
     Animated.timing(this.state.labelMarginTop, {
       toValue: this.state.labelHeight,
-      duration: 250,
+      duration: ANIMATION_DURATION,
     }).start()
   }
 
