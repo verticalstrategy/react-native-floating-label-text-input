@@ -3,7 +3,6 @@
 import React, { PureComponent } from 'react'
 import {
   Animated,
-  Text,
   TextInput,
   View,
   ViewPropTypes,
