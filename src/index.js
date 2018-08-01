@@ -26,8 +26,9 @@ type Props = {
   containerStyle?: ViewPropTypes.style,
   label?: string,
   labelStyle?: ViewPropTypes.style,
-  placeholder: string,
   style?: ViewPropTypes.style,
+  underlineColorAndroid?: string,
+  placeholder: string,
   value: ?string,
 }
 
@@ -125,6 +126,7 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
             <TextInput
               {...this.props}
               style={[this.props.style, styles.input]}
+              underlineColorAndroid={this.props.underlineColorAndroid}
             />
           </Animated.View>
         </View>
