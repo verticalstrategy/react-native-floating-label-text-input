@@ -102,32 +102,29 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
       inputRange: [0, this.state.labelHeight],
       outputRange: [1, 0],
     })
+    const { containerStyle, label, labelStyle, ...rest } = this.props
 
     return (
-      <View style={this.props.containerStyle}>
+      <View style={containerStyle}>
         <View style={styles.wrapper}>
           <Animated.Text
             onLayout={this.onLabelContainerLayout}
             style={[
               styles.labelContainer,
-              this.props.labelStyle,
+              labelStyle,
               {
                 marginTop: this.state.labelMarginTop,
                 opacity: labelContainerOpacity,
               },
             ]}>
-            {this.props.label || this.props.placeholder}
+            {label || this.props.placeholder}
           </Animated.Text>
           <Animated.View
             style={[
               styles.textInputContainer,
               { paddingTop: this.state.textInputContainerPaddingTop },
             ]}>
-            <TextInput
-              {...this.props}
-              style={[this.props.style, styles.input]}
-              underlineColorAndroid={this.props.underlineColorAndroid}
-            />
+            <TextInput {...rest} style={[this.props.style, styles.input]} />
           </Animated.View>
         </View>
       </View>
