@@ -1,11 +1,11 @@
 # React Native Floating Label Text Input
 
-Used as an alternative to `TextInput` by us in Rise, we thought you might love it too.
+Used as an alternative to `TextInput` by us in Vertical Strategy, we thought you might love it too.
 
 ## Installation
 
 ```
-yarn add @rise-digital/react-native-floating-label-text-input
+yarn add @verticalstrategy/react-native-floating-label-text-input
 ```
 
 ## Usage
@@ -30,4 +30,5 @@ Besides [TextInput Props](https://facebook.github.io/react-native/docs/textinput
 | `containerStyle`        | `any`    | Styles for the container wrapping the internal `TextInput` and label.             |
 | `label`                 | `string` | If provided, this will be displayed in the label instead of the placeholder text. |
 | `labelStyle`            | `any`    | Styles for the label.                                                             |
-| `underlineColorAndroid` | `string` | Pass `underlineColorAndroid` to `TextInput`                                       |
+| `underlineColorAndroid` | `string` | Passed as `underlineColorAndroid` to `TextInput`                                  |
+| `innerRef`              | `func`   | Passed as `ref` to `TextInput`                                                    |

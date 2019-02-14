@@ -1,11 +1,11 @@
 {
-  "name": "@rise-digital/react-native-floating-label-text-input",
-  "version": "1.0.0",
-  "description": "An alternative to TextInput by Rise",
+  "name": "@verticalstrategy/react-native-floating-label-text-input",
+  "version": "2.0.0",
+  "description": "An alternative to TextInput by Vertical Strategy",
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/risedigital/react-native-floating-label-text-input"
+    "url": "https://github.com/verticalstrategy/react-native-floating-label-text-input"
   },
   "keywords": [
     "textinput",
@@ -18,7 +18,7 @@
     "flow": "flow --show-all-errors --quiet",
     "lint": "eslint ."
   },
-  "author": "Rise Digital",
+  "author": "Vertical Strategy",
   "license": "MIT",
   "devDependencies": {
     "@rise-digital/eslint-config-rise": "^2.2.1",
@@ -28,8 +28,8 @@
     "react": "^16.4.1",
     "react-native": "^0.56.0"
   },
-  "homepage": "https://github.com/risedigital/react-native-floating-label-text-input#readme",
+  "homepage": "https://github.com/verticalstrategy/react-native-floating-label-text-input#readme",
   "bugs": {
-    "url": "https://github.com/risedigital/react-native-floating-label-text-input/issues"
+    "url": "https://github.com/verticalstrategy/react-native-floating-label-text-input/issues"
   }
 }
