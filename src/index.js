@@ -142,22 +142,10 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-
-  labelContainer: {
-    position: 'absolute',
-    top: 0,
-  },
-
-  textInputContainer: {
-    flex: 1,
-  },
-
-  input: {
-    flex: 1,
-  },
+  wrapper: { flex: 1 },
+  labelContainer: { position: 'absolute', top: 0 },
+  textInputContainer: { flex: 1 },
+  input: { flex: 1 },
 })
 
 export default FloatingLabelTextInput
