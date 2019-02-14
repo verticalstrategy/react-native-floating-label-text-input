@@ -30,6 +30,7 @@ type Props = {
   underlineColorAndroid?: string,
   placeholder: string,
   value: ?string,
+  innerRef: ?() => void,
 }
 
 type State = {
@@ -102,7 +103,7 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
       inputRange: [0, this.state.labelHeight],
       outputRange: [1, 0],
     })
-    const { containerStyle, label, labelStyle, ...rest } = this.props
+    const { containerStyle, label, labelStyle, innerRef, ...rest } = this.props
 
     return (
       <View style={containerStyle}>
@@ -124,7 +125,11 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
               styles.textInputContainer,
               { paddingTop: this.state.textInputContainerPaddingTop },
             ]}>
-            <TextInput {...rest} style={[this.props.style, styles.input]} />
+            <TextInput
+              {...rest}
+              ref={innerRef}
+              style={[this.props.style, styles.input]}
+            />
           </Animated.View>
         </View>
       </View>
