@@ -50,12 +50,16 @@ class FloatingLabelTextInput extends PureComponent<Props, State> {
     }
   }
 
-  componentWillReceiveProps = (nextProps: Props) => {
-    if (!this.props.value && nextProps.value) {
+  componentDidUpdate = (prevProps: Props) => {
+    const nextProps = this.props
+    const prevValue = prevProps.value
+    const nextValue = nextProps.value
+    if (!prevValue && nextValue) {
       this.animateTextInputContainerDown()
+      return
     }
 
-    if (this.props.value && !nextProps.value) {
+    if (prevValue && !nextValue) {
       this.animateTextInputContainerUp()
     }
   }
